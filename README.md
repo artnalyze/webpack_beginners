@@ -311,3 +311,14 @@ Minifying the Extracted CSS
 ```sh
 $ npm install optimize-css-assets-webpack-plugin --save-dev
 ```
+
+Handling Images
+
+Loading Image Files
+
+```css
+body {
+    background-image: url('cat.jpg');
+    background-size: cover; 
+}
+```
