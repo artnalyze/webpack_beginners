@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
     watch: true,
     mode: "development",
+    devtool: "cheap-module-eval-source-map",
     entry: "./src/index.js",
     output: {
         filename: "application.js",
@@ -10,14 +11,19 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: "babel-loader",
-                options: {
-                    presets: ["@babel/preset-env"],
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"],
+                    },
                 },
             },
-        }, ],
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
     },
 };

@@ -55,3 +55,85 @@ module.exports = {
 ```
 $ $ npm install --save-dev babel-loader @babel/core @babel/preset-env
 ```
+
+```js
+const path = require("path");
+
+module.exports = {
+    watch: true,
+    mode: "development",
+    devtool: "cheap-module-eval-source-map",
+    entry: "./src/index.js",
+    output: {
+        filename: "application.js",
+        path: path.resolve(__dirname, "build"),
+    },
+    module: {
+        rules: [{
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"],
+                },
+            },
+        }, ],
+    },
+};
+```
+
+handling CSS and SASS Files
+
+importing CSS in javascript
+
+Loading CSS with CSS-Loader
+
+```sh
+$ npm install css-loader --save-dev
+```
+
+```
+$ npm install style-loader --save-dev
+```
+
+```js
+const path = require("path");
+
+module.exports = {
+    watch: true,
+    mode: "development",
+    devtool: "cheap-module-eval-source-map",
+    entry: "./src/index.js",
+    output: {
+        filename: "application.js",
+        path: path.resolve(__dirname, "build"),
+    },
+    module: {
+        rules: [{
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"],
+                    },
+                },
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+    },
+};
+```
+
+Compiling SASS to CSS
+
+```
+$ npm install sass-loader node-sass --save-dev
+```
+
+
+
