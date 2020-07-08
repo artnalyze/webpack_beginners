@@ -1,1 +1,4 @@
-alert("Hello wolrd");
+var sayHello = require("./greeting.js");
+
+// alert("Hello wolrd");
+sayHello();
