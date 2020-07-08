@@ -30,8 +30,16 @@ module.exports = {
                             importLoaders: 1,
                         },
                     },
-                    "postcss-loader",
-                    "sass-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [
+                                require("autoprefixer")({
+                                    overrideBrowserslist: ["last 3 versions", "ie >9"],
+                                }),
+                            ],
+                        },
+                    },
                 ],
             },
             {
@@ -42,7 +50,16 @@ module.exports = {
                         loader: "css-loader",
                         options: { importLoaders: 1 },
                     },
-                    "postcss-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [
+                                require("autoprefixer")({
+                                    overrideBrowserslist: ["last 3 versions", "ie >9"],
+                                }),
+                            ],
+                        },
+                    },
                     "sass-loader",
                 ],
             },
