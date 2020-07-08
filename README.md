@@ -33,3 +33,25 @@ module.exports = {
 ```sh
 $ npm install path --save-dev
 ```
+
+watch
+
+```js
+const path = require("path");
+
+module.exports = {
+    watch: true,
+    mode: "development",
+    entry: "./src/index.js",
+    output: {
+        filename: "application.js",
+        path: path.resolve(__dirname, "build"),
+    },
+};
+```
+
+## Loaders and Plugins
+
+```
+$ $ npm install --save-dev babel-loader @babel/core @babel/preset-env
+```
