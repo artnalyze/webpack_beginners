@@ -1,4 +1,5 @@
 var sayHello = require("./greeting.js");
+import { sayHello1 } from "./greeting1.js";
 
-// alert("Hello wolrd");
 sayHello();
+sayHello1();
