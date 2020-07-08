@@ -135,5 +135,18 @@ Compiling SASS to CSS
 $ npm install sass-loader node-sass --save-dev
 ```
 
+Prefixing CSS with Vendor Prefixes
+
+```
+background: -webkit-gradient(linear, left top, right top, from(#00467f),
+to(#a5cc82));
+background: -o-linear-gradient(left, #00467f, #a5cc82);
+background: linear-gradient(to right, #00467f, #a5cc82)
+```
+
+```
+$ npm install postcss-loader --save-dev
+```
+
 
 
