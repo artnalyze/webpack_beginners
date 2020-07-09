@@ -35,6 +35,7 @@ module.exports = {
         alias: {
             CssFolder: path.resolve(__dirname, "src/stylesheets/"),
         },
+        modules: [path.resolve(__dirname, "src/downloaded_libs"), "node_modules"],
     },
     module: {
         rules: [{
