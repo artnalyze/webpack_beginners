@@ -552,3 +552,10 @@ Alternative to Manifest
 ```sh
 $ npm install --save-dev html-webpack-plugin
 ```
+
+## Resolving Folders
+
+Organizing Our Files
+
+Aliases
+
