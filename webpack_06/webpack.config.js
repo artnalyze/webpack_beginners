@@ -7,6 +7,10 @@ const WebpackManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    devServer: {
+        port: 9000,
+        contentBase: path.resolve(__dirname, "build"),
+    },
     watch: true,
     mode: "production",
     devtool: "cheap-module-eval-source-map",
