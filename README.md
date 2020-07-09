@@ -423,3 +423,8 @@ module.exports = {
     },
 };
 ```
+
+```
+$ npm install image-webpack-loader --save-dev
+```
+
