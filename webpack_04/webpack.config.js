@@ -2,6 +2,9 @@ const path = require("path");
 const MiniCssExtracPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WebpackManifestPlugin = require("webpack-manifest-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     watch: true,
@@ -12,12 +15,17 @@ module.exports = {
         admin: "./src/admin.js",
     },
     output: {
-        filename: "[name].js",
+        filename: "[name]-[contenthash].js",
         path: path.resolve(__dirname, "build"),
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/template.html",
+        }),
+        new WebpackManifestPlugin(),
+        new CleanWebpackPlugin(),
         new MiniCssExtracPlugin({
-            filename: "[name].css",
+            filename: "[name]-[contenthash].css",
         }),
     ],
     optimization: {
