@@ -1,0 +1,9 @@
+$gradient: linear-gradient(to right, #00467f, #a5cc82);
+body {
+    // background-image: $gradient;
+    // background: -webkit-gradient(linear, left top, right top, from(#00467f), to(#a5cc82));
+    // background: -o-linear-gradient(left, #00467f, #a5cc82);
+    // background: linear-gradient(to right, #00467f, #a5cc82);
+    background-image: url("./images/cat2.png");
+    background-size: cover;
+}
