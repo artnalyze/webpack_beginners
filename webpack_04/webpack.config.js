@@ -7,14 +7,17 @@ module.exports = {
     watch: true,
     mode: "production",
     devtool: "cheap-module-eval-source-map",
-    entry: "./src/index.js",
+    entry: {
+        application: "./src/index.js",
+        admin: "./src/admin.js",
+    },
     output: {
-        filename: "application.js",
+        filename: "[name].js",
         path: path.resolve(__dirname, "build"),
     },
     plugins: [
         new MiniCssExtracPlugin({
-            filename: "application.css",
+            filename: "[name].css",
         }),
     ],
     optimization: {
