@@ -10,6 +10,7 @@ module.exports = {
     devServer: {
         port: 9000,
         contentBase: path.resolve(__dirname, "build"),
+        publicPath: "/assets/",
     },
     watch: true,
     mode: "production",

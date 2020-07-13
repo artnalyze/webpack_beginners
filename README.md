@@ -564,3 +564,5 @@ Resolving Modules
 ## Webpack DevServer
 
 Installing and Configuring Webpack Dev Server
+
+Understanding publicPath option

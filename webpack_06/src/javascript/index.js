@@ -7,5 +7,5 @@ sayHello();
 sayHello1();
 
 $("body").append(
-    '<div style="background:yellow;padding:10px;">Hello jQuery</div>'
+    '<div style="background:yellow;padding:10px;">Hello jQuery MM</div>'
 );
