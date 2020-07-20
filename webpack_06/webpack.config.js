@@ -5,6 +5,7 @@ const TerserJSPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const WebpackManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const mode = "development";
 
 module.exports = {
     devServer: {
@@ -14,14 +15,18 @@ module.exports = {
         hot: true,
     },
     watch: true,
-    mode: "production",
+    // mode: "production",
+    mode: mode,
     devtool: "cheap-module-eval-source-map",
     entry: {
         application: "./src/javascript/index.js",
         admin: "./src/javascript/admin.js",
     },
     output: {
-        filename: "[name]-[contenthash].js",
+        filename: mode === "production" ? "[name]-[contenthash].js" : "[name].js",
+        // [hash] : is generated every change same to all bundle file
+        // [chunkhash] : is application and admin will split hash file
+        // [contenthash] : is generated each file separately
         path: path.resolve(__dirname, "build"),
     },
     plugins: [
@@ -31,7 +36,7 @@ module.exports = {
         new WebpackManifestPlugin(),
         new CleanWebpackPlugin(),
         new MiniCssExtracPlugin({
-            filename: "[name]-[contenthash].css",
+            filename: mode === "production" ? "[name]-[contenthash].css" : "[name].css",
         }),
     ],
     optimization: {
@@ -105,7 +110,9 @@ module.exports = {
                         loader: "url-loader",
                         options: {
                             limit: 8192,
-                            name: "[name].[hash:7].[ext]",
+                            name: mode === "production" ?
+                                "[name].[hash:7].[ext]" :
+                                "[name].[ext]",
                         },
                     },
                     {
