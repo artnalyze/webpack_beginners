@@ -13,6 +13,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, "build"),
         // publicPath: "/assets/",
         hot: true,
+        overlay: true,
     },
     watch: true,
     // mode: "production",
@@ -68,6 +69,7 @@ module.exports = {
                         loader: "css-loader",
                         options: {
                             importLoaders: 1,
+                            // hmr: true,
                         },
                     },
                     {
@@ -89,7 +91,10 @@ module.exports = {
                     //"style-loader",
                     {
                         loader: "css-loader",
-                        options: { importLoaders: 1 },
+                        options: {
+                            importLoaders: 1,
+                            // hmr: true,
+                        },
                     },
                     {
                         loader: "postcss-loader",
