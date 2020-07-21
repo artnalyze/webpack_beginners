@@ -7,5 +7,11 @@ sayHello();
 sayHello1();
 
 $("body").append(
-    '<div style="background:yellow;padding:10px;">Hello jQuery MM</div>'
+    '<div style="background:green;padding:10px;">Hello jQuery MM</div>'
 );
+
+if (module.hot) {
+    module.hot.accept(function(err) {
+        console.log(err);
+    });
+}
