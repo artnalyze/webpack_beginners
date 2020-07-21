@@ -689,5 +689,7 @@ module.exports = {
 
 Hot Module Replacement
 
+## CP-7 : Installing Third-Party Libraries
+
 
 
