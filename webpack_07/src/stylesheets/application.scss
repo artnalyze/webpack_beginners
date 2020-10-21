@@ -1,3 +1,13 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~jquery-ui/themes/base/datepicker.css';
+@import '~jquery-ui/themes/base/theme.css';
+@import '~quill/dist/quill.snow.css';
+
+/*
+@import './another_css_file1.css';
+@import './another_css_file2.css';
+*/
+
 $gradient: linear-gradient(to right, #00467f, #a5cc82);
 body {
     // background-image: $gradient;

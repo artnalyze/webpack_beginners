@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const WebpackManifestPlugin = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const mode = "development";
+const webpack = require("webpack");
 
 module.exports = {
     devServer: {
@@ -31,6 +32,10 @@ module.exports = {
         path: path.resolve(__dirname, "build"),
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+        }),
         new HtmlWebpackPlugin({
             template: "./src/template.html",
         }),

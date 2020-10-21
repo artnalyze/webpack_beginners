@@ -927,3 +927,202 @@ if (module.hot) {
 ```
 
 ### Webpack ProvidePlugin
+
+> webpack.config.js
+
+```js
+const path = require("path");
+const MiniCssExtracPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WebpackManifestPlugin = require("webpack-manifest-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const mode = "development";
+const webpack = require("webpack");
+
+module.exports = {
+    devServer: {
+        port: 9000,
+        contentBase: path.resolve(__dirname, "build"),
+        // publicPath: "/assets/",
+        hot: true,
+        overlay: true,
+    },
+    watch: true,
+    // mode: "production",
+    mode: mode,
+    devtool: "cheap-module-eval-source-map",
+    entry: {
+        application: "./src/javascript/index.js",
+        admin: "./src/javascript/admin.js",
+    },
+    output: {
+        filename: mode === "production" ? "[name]-[contenthash].js" : "[name].js",
+        // [hash] : is generated every change same to all bundle file
+        // [chunkhash] : is application and admin will split hash file
+        // [contenthash] : is generated each file separately
+        path: path.resolve(__dirname, "build"),
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/template.html",
+        }),
+        new WebpackManifestPlugin(),
+        new CleanWebpackPlugin(),
+        new MiniCssExtracPlugin({
+            filename: mode === "production" ? "[name]-[contenthash].css" : "[name].css",
+        }),
+    ],
+    optimization: {
+        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
+```
+
+> application.scss
+
+```scss
+@import '~bootstrap/dist/css/bootstrap.css';
+
+/*
+@import './another_css_file1.css';
+@import './another_css_file2.css';
+*/
+```
+
+### Installing jQuery-UI
+
+```sh
+$ npm install jquery-ui
+```
+
+```js
+//...
+import $ from "jquery";
+import "bootstrap";
+import "jquery-ui";
+import "jquery-ui/ui/widgets/datepicker";
+import 'jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/widgets/droppable';
+```
+
+> index.js
+
+```js
+import $ from "jquery";
+import "bootstrap";
+import "jquery-ui";
+import "jquery-ui/ui/widgets/datepicker";
+import "jquery-ui/ui/widgets/draggable";
+import "jquery-ui/ui/widgets/droppable";
+// import "bootstrap/dist/css/bootstrap.css";
+import { sayHello } from "./greeting.js";
+import { sayHello1 } from "./greeting1.js";
+import application from "CssFolder/application.scss";
+
+sayHello();
+sayHello1();
+
+$("body").append(
+    '<div style="background:green;padding:10px;">Hello jQuery MM</div>'
+);
+
+$("[data-toggle='tooltip']").tooltip();
+
+$("#datepicker").datepicker();
+
+if (module.hot) {
+    module.hot.accept(function(err) {
+        console.log(err);
+    });
+}
+```
+
+### Installing QuillJS
+
+```sh
+$ npm install quill
+```
+
+> index.js
+
+```js
+import $ from "jquery";
+import "bootstrap";
+import "jquery-ui";
+import "jquery-ui/ui/widgets/datepicker";
+import "jquery-ui/ui/widgets/draggable";
+import "jquery-ui/ui/widgets/droppable";
+import Quill from "quill";
+// import "bootstrap/dist/css/bootstrap.css";
+import { sayHello } from "./greeting.js";
+import { sayHello1 } from "./greeting1.js";
+import application from "CssFolder/application.scss";
+
+sayHello();
+sayHello1();
+
+$("body").append(
+    '<div style="background:green;padding:10px;">Hello jQuery MM</div>'
+);
+
+$("[data-toggle='tooltip']").tooltip();
+
+$("#datepicker").datepicker();
+
+var quill = new Quill("#editor", {
+    theme: "snow",
+});
+
+if (module.hot) {
+    module.hot.accept(function(err) {
+        console.log(err);
+    });
+}
+```
+
+> application.scss
+
+```scss
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~jquery-ui/themes/base/datepicker.css';
+@import '~jquery-ui/themes/base/theme.css';
+@import '~quill/dist/quill.snow.css';
+
+/*
+@import './another_css_file1.css';
+@import './another_css_file2.css';
+*/
+
+$gradient: linear-gradient(to right, #00467f, #a5cc82);
+body {
+    // background-image: $gradient;
+    // background: -webkit-gradient(linear, left top, right top, from(#00467f), to(#a5cc82));
+    // background: -o-linear-gradient(left, #00467f, #a5cc82);
+    // background: linear-gradient(to right, #00467f, #a5cc82);
+    background-image: url("../images/cat2.png");
+    background-size: cover;
+}
+```
+
+> template.html
+
+```html
+    <div style="background: #fff; margin: 20px">
+        <div id="editor">
+            <p>Hello World!</p>
+            <p>Some initial <strong>bold</strong> text</p>
+            <p><br /></p>
+        </div>
+    </div>
+```
+
+### Installing CKEDITOR
+
+```sh
+$ npm install @ckeditor/ckeditor5-build-classic
+```
