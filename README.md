@@ -1126,3 +1126,24 @@ body {
 ```sh
 $ npm install @ckeditor/ckeditor5-build-classic
 ```
+
+>> index.js
+
+```js
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+ClassicEditor.create(document.querySelector("#ckeditor"))
+    .then((editor) => {
+        console.log(editor);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+```
+
+> template.html
+
+```html
+<textarea id="ckeditor">Some initial text...</textarea>
+```
+
+### Lazy Loading
