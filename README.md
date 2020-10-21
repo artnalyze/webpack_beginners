@@ -867,3 +867,63 @@ module.exports = {
     }
 }
 ```
+
+### Using Bootstrap with Webpack
+
+```
+$ npm install bootstrap
+$ npm install popper.js
+```
+
+> src/javascript/index.js
+
+```js
+import $ from "jquery";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import { sayHello } from "./greeting.js";
+import { sayHello1 } from "./greeting1.js";
+import application from "CssFolder/application.scss";
+
+sayHello();
+sayHello1();
+
+$("body").append(
+    '<div style="background:green;padding:10px;">Hello jQuery MM</div>'
+);
+
+$("[data-toggle='tooltip']").tooltip();
+
+if (module.hot) {
+    module.hot.accept(function(err) {
+        console.log(err);
+    });
+}
+```
+
+> template.html
+
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My custom template</title>
+</head>
+
+<body>
+    <p style="background: white">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim a d minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliq uip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia dese runt mollit anim id est laborum.
+    </p>
+    <a href="#" class="btn btn-primary">Button</a>
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      Tooltip on Top
+    </button>
+</body>
+
+</html>
+```
+
+### Webpack ProvidePlugin
